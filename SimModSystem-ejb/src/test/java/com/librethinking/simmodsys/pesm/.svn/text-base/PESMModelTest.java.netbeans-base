@@ -1,0 +1,253 @@
+/*
+ * Copyright 2012 Christian Vielma <cvielma@librethinking.com>.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.librethinking.simmodsys.pesm;
+
+import com.librethinking.simmodsys.Parameter;
+import com.librethinking.simmodsys.State;
+import com.librethinking.simmodsys.User;
+import com.librethinking.simmodsys.exceptions.InvalidParameterException;
+import com.librethinking.simmodsys.exceptions.NullOrInvalidStateException;
+import com.librethinking.simmodsys.pesm.parameters.AssetAPR;
+import com.librethinking.simmodsys.pesm.parameters.AssetAmount;
+import java.util.ArrayList;
+import java.util.Collection;
+import org.junit.*;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author Christian Vielma <cvielma@librethinking.com>
+ */
+public class PESMModelTest {
+    
+       
+    public PESMModelTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+
+        /**
+     * Test of wasExecuted method, of class PESMModel.
+     */
+    @Test
+    public void testExecuteIncorrectly() {
+        System.out.println("wasExecuted");
+        PESMModel instance = new PESMModel();
+        try {instance.execute();}
+        catch(NullOrInvalidStateException e){ 
+            assertTrue("Correclty threw exception.", true);
+        }      
+        
+        // TODO review the generated test code and remove the default call to fail.
+        fail("Didn't fail execution.");
+    }
+    
+    /**
+     * Test of wasExecuted method, of class PESMModel.
+     */
+    @Test
+    public void testWasExecutedFalse() {
+        System.out.println("wasExecuted");
+        PESMModel instance = new PESMModel();
+        
+        assertFalse(instance.wasExecuted());
+        
+        // TODO review the generated test code and remove the default call to fail.
+        fail("Was executed, when shouldn't.");
+    }
+    
+     /**
+     * Test of wasExecuted method, of class PESMModel.
+     */
+    @Test
+    public void testWasExecutedTrue() {
+        System.out.println("wasExecuted");
+        PESMModel instance = new PESMModel();
+        instance.addState(new PESMState());
+        instance.execute();
+        assertTrue(instance.wasExecuted());
+        
+        // TODO review the generated test code and remove the default call to fail.
+        fail("Was executed, when shouldn't.");
+    }
+    /**
+     * Test of getInitialState method, of class PESMModel.
+     */
+    @Test
+    public void testGetInitialState() {
+        System.out.println("getInitialState");
+        PESMModel instance = new PESMModel();
+        PESMState mystate= new PESMState();
+        instance.addState(mystate);
+        
+        State expResult = mystate;
+        State result = instance.getInitialState();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("Failed getting Initial State.");
+    }
+
+    /**
+     * Test of setInitialState method, of class PESMModel.
+     */
+    @Test
+    public void testSetInitialState() throws InvalidParameterException {
+        System.out.println("setInitialState");
+        PESMState mystate = new PESMState();
+        Parameter myParam = new AssetAPR();
+        ArrayList<Parameter> myParamCollection = new ArrayList<Parameter>();
+        myParamCollection.add(myParam);
+        
+        mystate.setParameter(myParam.getName(), myParamCollection);
+        State st = new PESMState();
+        
+        Parameter myParam2 = new AssetAPR();
+        ArrayList<Parameter> myParamCollection2 = new ArrayList<Parameter>();
+        myParamCollection2.add(myParam2);
+        
+        st.setParameter(myParam2.getName(), myParamCollection2);
+        PESMModel instance = new PESMModel();
+        
+        instance.addState(mystate);
+        instance.setInitialState(st);
+        
+        assertEquals(instance.getInitialState(), st);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("Initial State set or got incorrectly.");
+    }
+
+    /**
+     * Test of getFinalState method, of class PESMModel.
+     */
+    @Test
+    public void testGetFinalState() {
+        System.out.println("getFinalState");
+        PESMModel instance = new PESMModel();
+        PESMState mystate= new PESMState();
+        instance.addState(mystate);
+        
+        State expResult = mystate;
+        State result = instance.getFinalState();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setFinalState method, of class PESMModel.
+     */
+    @Test
+    public void testSetFinalState() throws InvalidParameterException {
+        System.out.println("setFinalState");
+        PESMState mystate = new PESMState();
+        Parameter myParam = new AssetAPR();
+        ArrayList<Parameter> myParamCollection = new ArrayList<Parameter>();
+        myParamCollection.add(myParam);
+        
+        mystate.setParameter(myParam.getName(), myParamCollection);
+        State st = new PESMState();
+        Parameter myParam2 = new AssetAPR();
+        ArrayList<Parameter> myParamCollection2 = new ArrayList<Parameter>();
+        myParamCollection2.add(myParam2);
+        
+        st.setParameter(myParam2.getName(), myParamCollection2);
+        PESMModel instance = new PESMModel();
+        
+        instance.addState(mystate);
+        instance.setFinalState(st);
+        
+        assertEquals(instance.getFinalState(), st);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("Final State set or got incorrectly.");
+    }
+
+    /**
+     * Test of get and setStates method, getInitial and getFinal, of class PESMModel.
+     */
+    @Test
+    public void testGetSetStates() {
+        System.out.println("setStates");
+        Collection<State> sts = new ArrayList<State>();
+        State st1 = new PESMState();
+        State st2 = new PESMState();
+        State st3 = new PESMState();
+        
+        sts.add(st1); sts.add(st2); sts.add(st3);
+        
+        PESMModel instance = new PESMModel();
+        instance.setStates(sts);
+        
+        Collection<State> stres = instance.getStates();
+        assertEquals(stres.size(), sts.size());
+        
+        assertEquals(instance.getInitialState(), st1);
+        assertEquals(instance.getFinalState(), st3);
+        
+        
+        // TODO review the generated test code and remove the default call to fail.
+        fail("GetState, GetInitial, GetFinal or SetStates failed.");
+    }
+
+    /**
+     * Test of getStates method, of class PESMModel.
+     */
+    @Test
+    public void testGetStates() {
+        System.out.println("getStates");
+        PESMModel instance = new PESMModel();
+        Collection expResult = null;
+        Collection result = instance.getStates();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setUser method, of class PESMModel.
+     */
+    @Test
+    public void testGetSetUser() {
+        System.out.println("setUser");
+        User u = new User() {
+            @Override
+            public StringBuilder getID() {
+                return new StringBuilder("MyUser");
+            }
+        }; //TODO: Validate when implementing User.
+        PESMModel instance = new PESMModel();
+        instance.setUser(u);
+        
+        User result = instance.getUser();
+        assertEquals(u, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("Failed to return same user");
+    }
+
+}

@@ -1,0 +1,565 @@
+/*
+ * Copyright 2012 Christian Vielma <cvielma@librethinking.com>.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.librethinking.simmodsys.pesm;
+
+import com.librethinking.simmodsys.Parameter;
+import com.librethinking.simmodsys.exceptions.InvalidParameterException;
+import com.librethinking.simmodsys.exceptions.InvalidParameterNumberException;
+import com.librethinking.simmodsys.pesm.parameters.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import static org.junit.Assert.*;
+import org.junit.*;
+
+/**
+ * Unit Tests for PESMState.
+ * 
+ * @author Christian Vielma <cvielma@librethinking.com>
+ */
+public class PESMStateTest {
+    
+    public PESMStateTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Sets and request a valid parameter
+     */
+    @Test
+    public void testGetSetParameter() throws InvalidParameterException {
+        System.out.println("testGetSetParameter");
+        String param = "ASSET.AMOUNT";//Parameter suposed to be in the State
+        PESMState instance = new PESMState();
+        
+        Parameter myParam = new AssetAmount();
+        Collection<Parameter> myParamCol = new ArrayList<Parameter>();
+        myParamCol.add(myParam);
+        
+        instance.setParameter(myParam.getName(), myParamCol);
+        
+        Collection result = instance.getParameter(param);
+           
+        assertTrue(result.toArray()[0] instanceof AssetAmount);        
+    }
+    
+    
+    /**
+     * Sets a parameter and request an 
+     * inexistent parameter.
+     */
+    @Test
+    public void testGetInexistentParameter() throws InvalidParameterException {
+        System.out.println("testGetInexistentParameter");
+        String param = "MYINEXISTENTPARAMETER";//Must not exist
+        PESMState instance = new PESMState();
+        
+        Parameter myParam = new AssetAmount();
+        ArrayList<Parameter> myParamCol = new ArrayList<Parameter>();
+        myParamCol.add(myParam);
+        
+        instance.setParameter(myParam.getName(), myParamCol);
+        boolean thrown = false;
+        try{
+            Collection result = instance.getParameter(param);
+        }
+        catch(NoSuchElementException e){
+            thrown = true;
+            assertTrue("Exception trown correctly", true);
+        }     
+        
+        assertTrue(thrown);
+        
+    }
+
+    /**
+     * Test of setParameters method, of class PESMState. 
+     */
+    @Test
+    public void testGetSetParameters() throws InvalidParameterException, InvalidParameterNumberException {
+        System.out.println("testGetSetParameters");
+        Collection<Collection<Parameter>> params = new ArrayList<Collection<Parameter>>();
+        ArrayList<Parameter> myparam;
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetAPR()); params.add(myparam);       
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetAmount()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetMinSavings()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseDesiredExpenses()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseFixed()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseInflation()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseVariable()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeAnnualRise()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeFixedEarnings()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeVariableEarnings()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesAPR()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesAmount()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesMinPayment()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesDelayFee()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new Period()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeMonthly()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeMonthlyWI()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseMonthly()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetMonthAPR()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetAvDesExp()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeYearly()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseYearly()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesMonthly()); params.add(myparam); 
+        
+         
+        PESMState instance = new PESMState();
+        instance.setParameters(params);
+        Collection result = instance.getParameters();
+        
+        byte kop = 0; //Kind of parameters. This will count how many different parameters the state return.
+        boolean[] paramVal = new boolean[PESMState.NUMBEROFPARAMS]; //array to validate if each parameter has been counted
+        
+        for(Iterator i = result.iterator(); i.hasNext();){
+            Parameter currParam = (Parameter) ((Collection) i.next()).toArray()[0];
+            
+            if (currParam instanceof AssetAPR){ if(!paramVal[0]) kop++; paramVal[0]=true;}
+            else if (currParam instanceof AssetAmount){ if(!paramVal[1]) kop++; paramVal[1]=true;}
+            else if (currParam instanceof Period){ if(!paramVal[2]) kop++; paramVal[2]=true;}
+            else if (currParam instanceof AssetMinSavings){ if(!paramVal[3]) kop++; paramVal[3]=true;}
+            else if (currParam instanceof ExpenseDesiredExpenses){ if(!paramVal[4]) kop++; paramVal[4]=true;}
+            else if (currParam instanceof ExpenseFixed){ if(!paramVal[5]) kop++; paramVal[5]=true;}
+            else if (currParam instanceof ExpenseInflation){ if(!paramVal[6]) kop++; paramVal[6]=true;}
+            else if (currParam instanceof ExpenseVariable){ if(!paramVal[7]) kop++; paramVal[7]=true;}
+            else if (currParam instanceof IncomeAnnualRise){ if(!paramVal[8]) kop++; paramVal[8]=true;}
+            else if (currParam instanceof IncomeFixedEarnings){ if(!paramVal[9]) kop++; paramVal[9]=true;}
+            else if (currParam instanceof IncomeVariableEarnings){ if(!paramVal[10]) kop++; paramVal[10]=true;}
+            else if (currParam instanceof LiabilitiesAPR){ if(!paramVal[11]) kop++; paramVal[11]=true;}
+            else if (currParam instanceof LiabilitiesAmount){ if(!paramVal[12]) kop++; paramVal[12]=true;}
+            else if (currParam instanceof LiabilitiesDelayFee){ if(!paramVal[13]) kop++; paramVal[13]=true;}
+            else if (currParam instanceof LiabilitiesMinPayment){ if(!paramVal[14]) kop++; paramVal[14]=true;}
+            else if (currParam instanceof IncomeMonthly){ if(!paramVal[15]) kop++; paramVal[15]=true;}
+            else if (currParam instanceof IncomeYearly){ if(!paramVal[16]) kop++; paramVal[16]=true;}
+            else if (currParam instanceof IncomeMonthlyWI){ if(!paramVal[17]) kop++; paramVal[17]=true;}
+            else if (currParam instanceof ExpenseMonthly){ if(!paramVal[18]) kop++; paramVal[18]=true;}
+            else if (currParam instanceof ExpenseYearly){ if(!paramVal[19]) kop++; paramVal[19]=true;}
+            else if (currParam instanceof AssetMonthAPR){ if(!paramVal[20]) kop++; paramVal[20]=true;}
+            else if (currParam instanceof AssetAvDesExp){ if(!paramVal[21]) kop++; paramVal[21]=true;}
+            else if (currParam instanceof LiabilitiesMonthly){ if(!paramVal[22]) kop++; paramVal[22]=true;}
+            else{fail("Returned parameter type incorrect: "+currParam.getName());}           
+        }
+        assertTrue(kop==PESMState.NUMBEROFPARAMS);  //at least one of each parameter  
+        
+    }
+   
+     /**
+     * This try to set a wrong number of parameters.
+     */
+    @Test
+    public void testBadNumberSetParameters() {
+        System.out.println("testBadNumberSetParameters");
+        Collection<Collection<Parameter>> params = new ArrayList<Collection<Parameter>>();
+        ArrayList<Parameter> myparam;
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetAPR()); params.add(myparam);       
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetAmount()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetMinSavings()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseDesiredExpenses()); params.add(myparam); 
+        
+        
+        PESMState instance = new PESMState();
+        boolean thrown = false;
+        try{
+            instance.setParameters(params);
+        }
+        catch(InvalidParameterNumberException e){
+            thrown = true;
+            assertTrue("Failed correctly", true);
+        }
+        catch(Exception e){
+            fail("Failed throwing the exception");
+        }
+        // TODO review the generated test code and remove the default call to fail.
+        assertTrue(thrown);
+    }
+    
+     /**
+     * This try to set wrong type of Parameters.
+     */
+    @Test
+    public void testBadTypeSetParameters() {
+        System.out.println("testBadTypeSetParameters");
+        Collection<Collection<Parameter>> params = new ArrayList<Collection<Parameter>>();
+        ArrayList<Parameter> myparam;
+        
+       myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetAPR()); params.add(myparam);       
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetAmount()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetMinSavings()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseDesiredExpenses()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseFixed()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseInflation()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseVariable()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeAnnualRise()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeFixedEarnings()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeVariableEarnings()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesAPR()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesAmount()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesMinPayment()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesDelayFee()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new Period()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeMonthly()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeMonthlyWI()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseMonthly()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetMonthAPR()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetAvDesExp()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeYearly()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesMonthly()); params.add(myparam); 
+        
+       Parameter myParam = new Parameter(){
+                        public String getName(){return "MyParam";}
+                        public Collection<Object> getValue(){return new ArrayList<Object>();}
+                        public void setValue(Collection<Object> value){int i=0;};
+                        public int getStatus(){return 1;}
+                        public void setStatus(int status){int i=0;}
+                        public Collection<Object> getMaxValue(){return new ArrayList<Object>();}
+                        public Collection<Object> getMinValue(){return new ArrayList<Object>();}
+                        public boolean isUnique(){return true; }
+                        public Collection<Object> getDefaultValue() {return new ArrayList<Object>();}
+        };     
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(myParam); params.add(myparam); 
+        PESMState instance = new PESMState();
+        boolean thrown = false;
+        try{
+            instance.setParameters(params);
+        }
+        catch(InvalidParameterException e){
+            thrown = true;
+            assertTrue("Failed correctly", true);
+        }
+        catch(Exception e){
+            fail("Failed throwing the exception");
+        }
+        assertTrue(thrown);
+    }
+    
+     /**
+     * This try to compare if two States are equal.
+     */
+    @Test
+    public void testEqualsOk() {
+        System.out.println("testBadTypeSetParameters");
+        Collection<Collection<Parameter>> params = new ArrayList<Collection<Parameter>>();
+        ArrayList<Parameter> myparam;
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetAPR()); params.add(myparam);       
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetAmount()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetMinSavings()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseDesiredExpenses()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseFixed()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseInflation()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseVariable()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeAnnualRise()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeFixedEarnings()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeVariableEarnings()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesAPR()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesAmount()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesMinPayment()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesDelayFee()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new Period()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeMonthly()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeMonthlyWI()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseMonthly()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetMonthAPR()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new AssetAvDesExp()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new IncomeYearly()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new ExpenseYearly()); params.add(myparam); 
+        
+        myparam = new ArrayList<Parameter>();
+        myparam.add(new LiabilitiesMonthly()); params.add(myparam); 
+        
+        Collection<Collection<Parameter>> params2 = new ArrayList<Collection<Parameter>>();
+        ArrayList<Parameter> myparam2;
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new AssetAPR()); params2.add(myparam2);       
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new AssetAmount()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new AssetMinSavings()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new ExpenseDesiredExpenses()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new ExpenseFixed()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new ExpenseInflation()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new ExpenseVariable()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new IncomeAnnualRise()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new IncomeFixedEarnings()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new IncomeVariableEarnings()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new LiabilitiesAPR()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new LiabilitiesAmount()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new LiabilitiesMinPayment()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new LiabilitiesDelayFee()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new Period()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new IncomeMonthly()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new IncomeMonthlyWI()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new ExpenseMonthly()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new AssetMonthAPR()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new AssetAvDesExp()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new IncomeYearly()); params2.add(myparam2); 
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new ExpenseYearly()); params2.add(myparam2);
+        
+        myparam2 = new ArrayList<Parameter>();
+        myparam2.add(new LiabilitiesMonthly()); params2.add(myparam); 
+        
+        PESMState instance1 = new PESMState();
+        instance1.setParameters(params);
+        
+        PESMState instance2 = new PESMState();
+        instance2.setParameters(params2);
+        
+        //System.out.println(instance1.toString());
+        //System.out.println(instance2.toString());
+        
+        assertTrue("Are equal by default.", instance1.equals(instance2));
+        assertTrue("Hashcode too. ", instance1.hashCode()==instance2.hashCode());
+        
+        Collection<Parameter> ad1 = new ArrayList<Parameter>();
+        Parameter adjust1 = new AssetAPR();
+        ((AssetAPR)adjust1).setPercentage(0.15);
+        ad1.add(adjust1);
+        instance1.setParameter("ASSET.APR", ad1);
+        ad1 = new ArrayList<Parameter>();
+        adjust1 = new ExpenseMonthly();
+        ((ExpenseMonthly)adjust1).setAmount(20000.15);
+        ad1.add(adjust1);
+        instance1.setParameter("EXPENSE.MONTHLY", ad1);
+        
+        ad1 = new ArrayList<Parameter>();
+        adjust1 = new AssetAPR();
+        ((AssetAPR)adjust1).setPercentage(0.15);
+        ad1.add(adjust1);
+        instance2.setParameter("ASSET.APR", ad1);
+        
+        ad1 = new ArrayList<Parameter>();
+        adjust1 = new ExpenseMonthly();
+        ((ExpenseMonthly)adjust1).setAmount(20000.15);
+        ad1.add(adjust1);
+        instance2.setParameter("EXPENSE.MONTHLY", ad1);
+        
+        assertTrue("Are equal after modifying some parameters.", instance1.equals(instance2));
+        assertTrue("Are equal the other way.", instance2.equals(instance1));
+        assertTrue("Hashcode too. ", instance1.hashCode()==instance2.hashCode());
+        
+        ad1 = new ArrayList<Parameter>();
+        adjust1 = new IncomeMonthly();
+        ((IncomeMonthly)adjust1).setAmount(1.25);
+        ad1.add(adjust1);
+        instance2.setParameter("INCOME.MONTHLY", ad1);
+        
+        assertTrue("They are no longer equal. ", !instance1.equals(instance2));   
+        assertTrue("Hashcode too. ", instance1.hashCode()!=instance2.hashCode());
+        
+    }
+    
+    //TODO: tests with nulls and stuff
+}

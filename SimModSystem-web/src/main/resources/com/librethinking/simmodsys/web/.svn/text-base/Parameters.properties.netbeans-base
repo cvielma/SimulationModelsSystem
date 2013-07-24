@@ -1,0 +1,180 @@
+# Copyright 2012 Christian Vielma <cvielma@librethinking.com>.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#
+# This file contains the description for each parameter.
+#
+
+mt001.parameter.block.style=parameterBlock
+mt001.parameter.name.style=parameterName
+mt001.parameter.field.style=parameterField
+mt001.parameter.field.group.style=parameterGroup
+mt001.parameter.field.title.style=parameterFieldTitle
+mt001.parameter.field.input.style=parameterFieldInput
+mt001.parameter.field.range.style=parameterFieldRange
+mt001.parameter.value.style=parameterValue
+
+mt001.asset=Assets
+mt001.expense=Expenses
+mt001.income=Incomes
+mt001.liabilities=Liabilities
+
+mt001.asset.apr.name=Savings Interest APR
+mt001.asset.apr.param0= APR %
+mt001.asset.apr.userinput=True
+
+mt001.asset.amount.name=Assets Amount
+mt001.asset.amount.param0=Amount
+mt001.asset.amount.userinput=True
+
+mt001.asset.avdesexp.name=Assets Available for Desired Expenses
+mt001.asset.avdesexp.param0=Amount
+mt001.asset.avdesexp.userinput=False
+
+mt001.asset.minsaving.name=Desired Savings Percentage
+mt001.asset.minsaving.param0=Annual %
+mt001.asset.minsaving.userinput=True
+
+mt001.asset.monthapr.name=Month's Income from Assets Interests
+mt001.asset.monthapr.param0=Amount
+mt001.asset.monthapr.userinput=False
+
+mt001.expense.desiredexp.name=Desired Expenses
+mt001.expense.desiredexp.param0=Category (considered for inflation)
+mt001.expense.desiredexp.param1=Description
+mt001.expense.desiredexp.param2=Amount
+mt001.expense.desiredexp.param3=Priority
+mt001.expense.desiredexp.userinput=True
+
+mt001.expense.fixedexp.name=Fixed Expenses
+mt001.expense.fixedexp.param0=Category (considered for inflation)
+mt001.expense.fixedexp.param1=Amount
+mt001.expense.fixedexp.userinput=True
+
+mt001.expense.inflation.name=Annual Inflation
+mt001.expense.inflation.param0=Category
+mt001.expense.inflation.param1=Annual Minimum
+mt001.expense.inflation.param2=Annual Maximum
+mt001.expense.inflation.param3=This Year's Inflation
+mt001.expense.inflation.userinput=True
+
+mt001.expense.monthly.name=Month's Expenses
+mt001.expense.monthly.param0=Amount
+mt001.expense.monthly.userinput=False
+
+mt001.expense.varexp.name=Variable Expenses
+mt001.expense.varexp.param0=Category
+mt001.expense.varexp.param1=% of Occurrence
+mt001.expense.varexp.param2=Amount
+mt001.expense.varexp.userinput=True
+
+mt001.expense.yearly.name=Year's Expenses
+mt001.expense.yearly.param0=Amount
+mt001.expense.yearly.userinput=False
+
+mt001.income.annualrise.name=Annual Income Rises
+mt001.income.annualrise.param0=Category
+mt001.income.annualrise.param1=Annual Minimum
+mt001.income.annualrise.param2=Annual Maximum
+mt001.income.annualrise.param3=This Year's Rises
+mt001.income.annualrise.userinput=True
+
+mt001.income.fixedearn.name=Fixed Incomes
+mt001.income.fixedearn.param0=Category
+mt001.income.fixedearn.param1=Amount
+mt001.income.fixedearn.userinput=True
+
+mt001.income.monthly.name=Month's Income
+mt001.income.monthly.param0=Amount
+mt001.income.monthly.userinput=False
+
+mt001.income.monthlywi.name=Month's Income Before Assets' Interests
+mt001.income.monthlywi.param0=Amount
+mt001.income.monthlywi.userinput=False
+
+mt001.income.varearn.name=Variable Incomes
+mt001.income.varearn.param0=Category
+mt001.income.varearn.param1=% of Occurrence
+mt001.income.varearn.param2=Amount
+mt001.income.varearn.userinput=True
+
+mt001.income.yearly.name=Year's Income
+mt001.income.yearly.param0=Amount
+mt001.income.yearly.userinput=False
+
+mt001.liabilities.apr.name=Liabilities APR
+mt001.liabilities.apr.param0=APR %
+mt001.liabilities.apr.userinput=True
+
+mt001.liabilities.amount.name=Liabilities Amount
+mt001.liabilities.amount.param0=Amount
+mt001.liabilities.amount.userinput=True
+
+mt001.liabilities.delayedfee.name=Liabilities Delayed Payment Fee
+mt001.liabilities.delayedfee.param0=Fee Amount
+mt001.liabilities.delayedfee.userinput=True
+
+mt001.liabilities.minpay.name=Liabilities Monthly Minimum Payment Percentage
+mt001.liabilities.minpay.param0=Minimum Payment %
+mt001.liabilities.minpay.userinput=True
+
+mt001.liabilities.monthly.name=Month's Liabilities
+mt001.liabilities.monthly.param0=Amount
+mt001.liabilities.monthly.userinput=False
+
+mt001.period.months.name=Month
+mt001.period.months.param0=Month (Number)
+mt001.period.months.userinput=True
+
+mt001.report.text.0 =Personal Economic Report
+mt001.report.text.1 =Expenses
+mt001.report.text.2 =Incomes
+mt001.report.text.3 =Assets
+mt001.report.text.4 =Liabilities
+
+
+pt001.0=0
+pt001.12=12
+pt001.36=36
+pt001.60=60
+pt001.120=120
+pt001.posinfinite= +Infinite
+pt001.1=1
+pt002.0=0.0
+pt002.neginfinite=-Infinite
+pt002.posinfinite=+Infinite
+pt002.1=1.0
+pt003.empty=Text
+pt003.maxlength.posinfinite=
+error.valuenotfound=Error
+
+fieldv.pt001.0=int-0
+fieldv.pt001.12=int-12
+fieldv.pt001.36=int-36
+fieldv.pt001.60=int-60
+fieldv.pt001.120=int-120
+fieldv.pt001.posinfinite=int-max
+fieldv.pt001.1=int-1
+fieldv.pt002.0=double-0
+fieldv.pt002.neginfinite=double-minneg
+fieldv.pt002.posinfinite=double-max
+fieldv.pt002.1=double-1
+fieldv.pt003.empty=text-empty
+fieldv.pt003.maxlength.posinfinite=
+fieldv.error.valuenotfound=Error
+
+error.field.mandatory=This parameter cannot be empty
+error.field.outofrange=Value set is not a valid parameter's value
+
+

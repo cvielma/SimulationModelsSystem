@@ -1,0 +1,99 @@
+# Copyright 2012 Christian Vielma <cvielma@librethinking.com>.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+header.menu.text.1.logged=HOME
+header.menu.text.1.default=HOME
+header.menu.link.1.logged=/simmodsys
+header.menu.link.1.default=/simmodsys
+
+header.menu.text.2.logged=SELECT MODEL
+header.menu.text.2.default=ENTER AS GUEST
+header.menu.link.2.logged=/ListModels
+header.menu.link.2.default=/ListModels
+
+header.menu.text.3.logged=LOGOUT
+header.menu.text.3.default=REGISTER
+header.menu.link.3.logged=/Logout
+header.menu.link.3.default=/RegisterUser
+
+header.menu.text.4.logged=ABOUT
+header.menu.text.4.default=ABOUT
+header.menu.link.4.logged=/simmodsys
+header.menu.link.4.default=/simmodsys
+
+title.registeruser=Register User
+title.results=Results
+title.configuringmodel=Configuring Model Type:
+title.configurenewmodel=Select a Model Type and start configuring it: 
+title.showmodelresults:...or select a Saved Model to review previous results:
+
+error.form.registerUserForm=There are errors completing the form. See the errors listed below.
+
+field.mand.text=mand.text
+field.mand.passwd=mand.passwd
+field.mand.passwdconfirm=mand.passwdconfirm
+field.mand.email=mand.email
+field.mand.numeric=mand.numeric
+field.mand.int=mand.int
+field.mand.double=mand.double
+
+form.field.userid=UserID:
+form.field.password=Password:
+form.field.confirmpassword=Confirm Password:
+form.field.firstname=First Name:
+form.field.lastname=Last Name:
+form.field.email=Email:
+form.button.register=Register
+form.button.login=Login
+form.button.executemodel=Execute Model
+
+message.loggedin=You're logged in!
+message.whylogin=Log-in to save and share your simulations!
+message.welcome=Welcome to the Model Simulator System: Simulate real-life situations!
+message.configurethismodel=Configure this model
+message.error.nullsession=Error: Session is null!
+message.modelsaved=Model Saved Successfully!
+message.showmodelresults=Show the results for this model
+message.nomodelsavtoconf=Currently there aren't any model to configure
+message.nomodelssaved=Currently there aren't models saved
+
+error.field.mandatory=Cannot be empty
+error.field.passwnotmatch=Passwords don't match
+error.field.nonumeric=Must be a number
+error.field.invalidemail=Invalid email address
+error.nologgedin=You must login in order to save a model.
+error.nomodelname=Please provide a name for the model.
+
+label.logout=Logout
+link.logout=/Logout
+label.state=State: 
+label.initialstate=Initial State
+label.finalstate=Final State
+label.showreport=Show Report
+label.modelname=Model Name
+label.savemodel=Save Model
+label.showresult=Show Detailed Results
+
+
+state.asset=Assets
+state.liability=Liabilities
+state.expense=Expenses
+state.other=Other
+state.income=Incomes
+
+
+
+
+
+

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PESMReport" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="assetAmount" class="java.lang.Double">
+		<fieldDescription><![CDATA[assetAmount]]></fieldDescription>
+	</field>
+	<field name="liabilitiesAmount" class="java.lang.Double">
+		<fieldDescription><![CDATA[liabilitiesAmount]]></fieldDescription>
+	</field>
+	<field name="monthlyExpensesAmount" class="java.lang.Double">
+		<fieldDescription><![CDATA[monthlyExpensesAmount]]></fieldDescription>
+	</field>
+	<field name="monthlyIncomesAmount" class="java.lang.Double">
+		<fieldDescription><![CDATA[monthlyIncomesAmount]]></fieldDescription>
+	</field>
+	<field name="month" class="java.lang.Integer">
+		<fieldDescription><![CDATA[month]]></fieldDescription>
+	</field>
+	<field name="assetSeries" class="java.lang.String">
+		<fieldDescription><![CDATA[assetSeries]]></fieldDescription>
+	</field>
+	<field name="expensesSeries" class="java.lang.String">
+		<fieldDescription><![CDATA[expensesSeries]]></fieldDescription>
+	</field>
+	<field name="incomeSeries" class="java.lang.String">
+		<fieldDescription><![CDATA[incomeSeries]]></fieldDescription>
+	</field>
+	<field name="liabilitySeries" class="java.lang.String">
+		<fieldDescription><![CDATA[liabilitySeries]]></fieldDescription>
+	</field>
+	<field name="mainTitle" class="java.lang.String">
+		<fieldDescription><![CDATA[mainTitle]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="57" splitType="Stretch">
+			<textField>
+				<reportElement x="144" y="7" width="470" height="39"/>
+				<textElement textAlignment="Center">
+					<font size="26"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mainTitle}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band height="446">
+			<lineChart>
+				<chart>
+					<reportElement x="14" y="23" width="718" height="398"/>
+					<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{expensesSeries}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{month}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{monthlyExpensesAmount}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{incomeSeries}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{month}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{monthlyIncomesAmount}]]></valueExpression>
+					</categorySeries>
+                                        <categorySeries>
+						<seriesExpression><![CDATA[$F{assetSeries}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{month}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{assetAmount}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{liabilitySeries}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{month}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{liabilitiesAmount}]]></valueExpression>
+					</categorySeries>					
+				</categoryDataset>
+				<linePlot>
+					<plot/>
+				</linePlot>
+			</lineChart>
+		</band>
+	</summary>
+</jasperReport>
