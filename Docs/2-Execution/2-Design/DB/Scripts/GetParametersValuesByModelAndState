@@ -1,0 +1,41 @@
+﻿--this will work only if inserted sequentially
+SELECT
+      sp."ID",
+      sp."C_MODEL", 
+      sp."C_STATE",
+      sp."C_PARAM", 
+      (sp."C_VALUE" % param."PARAM_NUM") as "PARAM_ORD", 
+      param."NM_PARAM", 
+      param."TYPE",       
+      sp."VL_VALUE",
+      param."PARAM_NUM"
+FROM 
+    ( SELECT s."C_MODEL", 
+	     s."C_STATE", 
+	     s."C_PARAM", 
+	     (s."C_VALUE" - min(s."C_VALUE") over(partition by s."C_MODEL", s."C_STATE", s."C_PARAM")) as "C_VALUE",
+	     s."VL_VALUE",
+	     s."C_VALUE" as "ID"
+      FROM "STATE_PARAMETER" as s
+      WHERE s."C_MODEL" = 111
+	    AND s."C_STATE" = 1
+      ) as sp,
+      (SELECT p."C_PARAM", p."NM_PARAM", 	       
+	       pv."TP_PARAM_VALUE" as "TYPE",
+	       (row_number() OVER(partition by pv."C_PARAM" ORDER BY pv."C_PARAM_VALUE" DESC) -1) as "PARAM_SEQ",
+	       count(pv."C_PARAM_VALUE") over (partition by pv."C_PARAM") as "PARAM_NUM"    
+	FROM "PARAMETER" as p,
+	     "PARAMETER_VALUE" as pv
+	WHERE
+	     p."C_PARAM" = pv."C_PARAM"
+	ORDER BY "C_PARAM", "NM_PARAM", "PARAM_SEQ" ASC
+	) as param
+WHERE
+	sp."C_PARAM" = param."C_PARAM"
+	AND (sp."C_VALUE" % param."PARAM_NUM") = param."PARAM_SEQ"
+ORDER BY sp."C_MODEL", sp."C_STATE", sp."C_PARAM", (sp."C_VALUE" % param."PARAM_NUM")
+
+
+      
+
+	
