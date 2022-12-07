@@ -17469,7 +17469,7 @@ COPY "STATE_PARAMETER" ("C_MODEL", "C_STATE", "C_PARAM", "C_VALUE", "VL_VALUE") 
 
 COPY "USER" ("C_USER", "NM_FIRSTNAME", "NM_LASTNAME", "VL_EMAIL", "VL_LOCKED", "VL_PASSWORD") FROM stdin;
 prueba	prueba nombre	prueba nombre	prueba@gmail.com	f	prueba
-cvielma	Christian	Vielma	cvielma@gmail.com	f	prueba
+cvielma	Christian	Vielma	jdoe1@gmail.com	f	prueba
 jdoe	John	Doe	jdoe@gmail.com	f	prueba
 \.
 
